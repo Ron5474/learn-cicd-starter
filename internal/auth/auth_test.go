@@ -7,21 +7,20 @@ import (
 	"testing"
 )
 
-
 func TestGetAPIKey(t *testing.T) {
 	tests := map[string]struct {
-		input http.Header
-		wantKey string
+		input     http.Header
+		wantKey   string
 		wantError error
 	}{
-		"Valid ApiKey":	{
-			input: http.Header{"Authorization": []string{"ApiKey my-secret-api-key"}}, 
-			wantKey: "my-secret-api-key",
+		"Valid ApiKey": {
+			input:     http.Header{"Authorization": []string{"ApiKey my-secret-api-key"}},
+			wantKey:   "my-secret-api-key",
 			wantError: nil,
 		},
 		"Invalid Key": {
-			input: http.Header{"Authorization": []string{"ApiKey"}},
-			wantKey: "",
+			input:     http.Header{"Authorization": []string{"ApiKey"}},
+			wantKey:   "",
 			wantError: errors.New("malformed authorization header"),
 		},
 	}
