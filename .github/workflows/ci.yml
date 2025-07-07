@@ -19,6 +19,12 @@ jobs:
 
       - name: Run Formatter
         run: test -z $(go fmt ./...)
+      
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+      
+      - name: Check for Lint Errors
+        run: staticcheck ./...
 
 
 
